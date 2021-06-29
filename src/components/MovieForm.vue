@@ -10,6 +10,7 @@
           <v-text-field
             v-model="titulo"
             :rules="nameRules"
+            prepend-icon="mdi-format-title"
             :counter="30"
             label="Titulo"
             required
@@ -23,6 +24,7 @@
           <v-text-field
             v-model="director"
             :rules="nameRules"
+            prepend-icon="mdi-movie-open-star"
             :counter="30"
             label="Director"
             required
@@ -37,6 +39,7 @@
         <v-select
           :items="items"
           label="Clasificacion"
+          prepend-icon="mdi-sticker-emoji"
           outlined
         ></v-select>
       </v-col>
@@ -48,6 +51,7 @@
           <v-text-field
             v-model="duracion"
             :rules="nameRules"
+            prepend-icon="mdi-clock-time-three-outline"
             label="Duracion"
             required
             suffix='Minutos'
@@ -121,6 +125,7 @@
       >
         <v-select
           :items="itemsIdioma"
+          prepend-icon="mdi-translate"
           label="Idioma"
           outlined
         ></v-select>
@@ -133,11 +138,25 @@
           <v-select
             v-model="value"
             :items="itemsGenero"
+            prepend-icon="mdi-drama-masks"
             chips
             label="Genero"
             multiple
             outlined
           ></v-select>
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="6"
+        >
+        <v-file-input
+            :rules="rulesImagen"
+            accept="image/png, image/jpeg, image/bmp"
+            placeholder="Subir Imagen"
+            prepend-icon="mdi-camera"
+            label="Imagen"
+        ></v-file-input>
         </v-col>
 
       </v-row>
@@ -156,6 +175,7 @@
       duracion: '',
       idioma: '',
       genero: '',
+      imagen: null,
       tituloRules: [
         v => !!v || 'Titulo es requerido',
         v => v.length <= 30 || 'Titulo debe ser menor a 30 caracteres',
@@ -164,9 +184,12 @@
       dates: [ ],
       menu: false,
       itemsIdioma: ['Español', 'Ingles', 'Subtitulada'],
-      itemsGenero: ['Thriller', 'Drama', 'Accion', 'Animada'],
+      itemsGenero: ['Thriller', 'Drama', 'Accion', 'Animada', 'Horror'],
       value: [ ],
-      
+      rulesImagen: [
+        value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
+      ],
     }),
   }
 </script>
+

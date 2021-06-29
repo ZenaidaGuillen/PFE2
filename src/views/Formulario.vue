@@ -1,8 +1,9 @@
 <template>
     <div>
-        <h1>Formulario</h1>
+        <h1 style="color: yellow">Formulario</h1>
         <MovieForm/>
     </div>
+    
   
 </template>
 
